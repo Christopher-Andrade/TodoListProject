@@ -10,6 +10,8 @@
 
   <PropertyGroup>
     <UserSecretsId>aspnet-ToDoList-e5445042-472e-4d57-8f59-1c3d83349e41</UserSecretsId>
+    <AssemblyName>ToDoList.Web</AssemblyName>
+    <RootNamespace>ToDoList.Web</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TodoList.Domain
+﻿namespace TodoList.Domain.Entities
 {
     public class City
     {

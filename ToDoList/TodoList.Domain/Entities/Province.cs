@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace TodoList.Domain
+namespace TodoList.Domain.Entities
 {
     public class Province
     {

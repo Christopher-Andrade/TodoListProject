@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TodoList.Domain
+namespace TodoList.Domain.Entities.Comment
 {
     public abstract class Comment
     {
@@ -15,5 +13,7 @@ namespace TodoList.Domain
         public DateTime DateTime { get; set; }
 
         public User User { get; set; }
+
+        public string CommentParentIdentifier { get; set; }
     }
 }

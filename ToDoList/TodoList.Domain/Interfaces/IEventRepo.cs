@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TodoList.Domain;
+﻿using System.Collections.Generic;
+using TodoList.Domain.Entities;
 
-namespace TodoList.Common.Repository
+namespace TodoList.Domain.Interfaces
 {
     public interface IEventRepo
     {

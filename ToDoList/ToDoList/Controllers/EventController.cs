@@ -17,7 +17,7 @@ namespace ToDoList.Controllers
         [HttpPost]
         public IActionResult Search()
         {
-
+            return View();
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace TodoList.Domain
+namespace TodoList.Domain.Entities
 {
     public class Event
     {
@@ -12,6 +10,6 @@ namespace TodoList.Domain
 
         public string Description { get; set; }
 
-        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Comment.Comment> Comments { get; set; }
     }
 }
