@@ -1,18 +1,24 @@
 ﻿class EventSelector extends React.Component {
     render() {
         return (
-            <div className="eventList">
-                <h2>Filter events by location</h2>
-                <div className="row">
-                    <div className="col-md-2">Province:</div>
+            <form method="post" action="Event/Search">
+                <div className="eventList">
+                    <p className="text-center">
+                        <h4>Filter events by location</h4>
+                    </p>
+                    <div className="form-group">
+                        <label>Province:</label>
                     //Ddl
-                </div>
+                    </div>
 
-                <div className="row">
-                    <div className="col-md-2">City:</div>
-                //Ddl
+                    <div className="form-group">
+                        <label>City:</label>
+                    //Ddl
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Search</button>
                 </div>
-            </div>
+            </form>
         )
     }
 }
@@ -40,3 +46,8 @@ class EventItem extends React.Component {
         )
     }
 }
+
+ReactDOM.render(
+    <EventSelector />,
+    document.getElementById('content')
+);
