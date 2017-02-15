@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TodoList.Common.Repository;
-using TodoList.Domain;
+using TodoList.Domain.Entities;
+using TodoList.Domain.Interfaces;
 
-namespace TodoList.Services.SqlRepository
+namespace TodoList.Infrastructure.Data.SqlRepository
 {
     public class SqlEventRepo : IEventRepo
     {
@@ -12,17 +12,13 @@ namespace TodoList.Services.SqlRepository
             throw new NotImplementedException();
         }
 
-        public List<Event> GetEventsByProvince()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Event> GetEventsByCity()
-        {
-            throw new NotImplementedException();
-        }
 
         public void AddEvent(Event ev)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Event> GetEventsByLocale(int provinceId = 0, int cityId = 0)
         {
             throw new NotImplementedException();
         }

@@ -7,9 +7,7 @@ namespace TodoList.Domain.Interfaces
     {
         List<Event> GetAllEvents();
 
-        List<Event> GetEventsByProvince();
-
-        List<Event> GetEventsByCity();
+        List<Event> GetEventsByLocale(int provinceId = 0, int cityId = 0);
 
         void AddEvent(Event ev);
     }

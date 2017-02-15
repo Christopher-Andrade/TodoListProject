@@ -46,5 +46,8 @@
     <Folder Include="Views\Event\" />
     <Folder Include="Views\NewFolder\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TodoList.Services\TodoList.Services.csproj" />
+  </ItemGroup>
 
 </Project>

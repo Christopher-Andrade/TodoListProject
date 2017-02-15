@@ -9,10 +9,10 @@ namespace TodoList.Services.Interfaces
     {
         IEnumerable<Event> GetAllEvents();
 
-        IEnumerable<Event> GetEventsByProvince(int provinceId);
-
-        IEnumerable<Event> GetEventsByCity(int cityId);
+        IEnumerable<Event> GetEventsByLocale(int provinceId = 0, int cityId = 0);
 
         IEnumerable<Comment> GetCommentsForEvent(int eventId);
+
+        void AddEvent(Event ev);
     }
 }
