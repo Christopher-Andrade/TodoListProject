@@ -47,6 +47,7 @@
     <Folder Include="Views\NewFolder\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TodoList.Infrastructure.Data\TodoList.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\TodoList.Services\TodoList.Services.csproj" />
   </ItemGroup>
 

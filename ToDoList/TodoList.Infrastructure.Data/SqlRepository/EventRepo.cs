@@ -5,7 +5,7 @@ using TodoList.Domain.Interfaces;
 
 namespace TodoList.Infrastructure.Data.SqlRepository
 {
-    public class SqlEventRepo : IEventRepo
+    public class EventRepo : IEventRepo
     {
         public List<Event> GetAllEvents()
         {

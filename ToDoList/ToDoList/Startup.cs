@@ -14,6 +14,10 @@ using ToDoList.Models;
 using ToDoList.Services;
 using React.AspNet;
 using Microsoft.AspNetCore.Http;
+using TodoList.Domain.Interfaces;
+using TodoList.Infrastructure.Data.SqlRepository;
+using TodoList.Services;
+using TodoList.Services.Interfaces;
 
 namespace ToDoList
 {
@@ -49,6 +53,8 @@ namespace ToDoList
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+      
+
             //React Js
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
@@ -62,9 +68,13 @@ namespace ToDoList
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<IEventService, EventService>();
+            services.AddTransient<IRegionService, RegionService>();
+            services.AddTransient<IUserService, UserService>();
 
-            
-           
+            //Repos
+            //services.AddTransient<IEventRepo, EventRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
