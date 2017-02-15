@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using TodoList.Domain.Interfaces;
 
-namespace TodoList.Domain.Interfaces
+namespace TodoList.Infrastructure.Data.SqlRepository
 {
     public abstract class GenericRepository<C, T> : 
         IGenericRepository<T> where T :
-        class where C : DbContext, new()
+        class where C : Microsoft.EntityFrameworkCore.DbContext, new()
     {
         private C _entities = new C();
 
