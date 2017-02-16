@@ -14,7 +14,9 @@ using ToDoList.Models;
 using ToDoList.Services;
 using React.AspNet;
 using Microsoft.AspNetCore.Http;
+using TodoList.Domain.Entities;
 using TodoList.Domain.Interfaces;
+using TodoList.Infrastructure.Data.Context;
 using TodoList.Infrastructure.Data.SqlRepository;
 using TodoList.Services;
 using TodoList.Services.Interfaces;
@@ -49,6 +51,8 @@ namespace ToDoList
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
@@ -64,13 +68,35 @@ namespace ToDoList
                 options.SslPort = 44370;
                 options.Filters.Add(new Microsoft.AspNetCore.Mvc.RequireHttpsAttribute());
             });
-
+            
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IRegionService, RegionService>();
             services.AddTransient<IUserService, UserService>();
+           // services.AddTransient<IGenericRepository<Event>, GenericRepository<EventContext, Event>>();
+            services.AddTransient<ICommentRepo, CommentRepo>();
+         //   services.
+            services.AddScoped(typeof(IGenericRepository<Event>), typeof(GenericRepository<EventContext, Event>));
+
+            var builder =
+                new DbContextOptionsBuilder().UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+
+
+            var oo =
+                SqlServerDbContextOptionsExtensions.UseSqlServer(builder, Configuration.GetConnectionString("DefaultConnection"));
+
+            services.AddScoped(EventContext, new EventContext(oo));
+
+          //  EventContext c = new EventContext(new SqlServerDbContextOptionsExtensions(){})
+            services.AddScoped(typeof(GenericRepository<EventContext, Event>), typeof(GenericRepository<EventContext, Event>));
+
+
+            services.AddDbContext<EventContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            
 
             //Repos
             //services.AddTransient<IEventRepo, EventRepo>();

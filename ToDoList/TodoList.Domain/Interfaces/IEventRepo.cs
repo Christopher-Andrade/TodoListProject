@@ -3,7 +3,7 @@ using TodoList.Domain.Entities;
 
 namespace TodoList.Domain.Interfaces
 {
-    public interface IEventRepo
+    public interface IEventRepo : IGenericRepository<Event>
     {
         List<Event> GetAllEvents();
 
@@ -11,4 +11,6 @@ namespace TodoList.Domain.Interfaces
 
         void AddEvent(Event ev);
     }
+
+    
 }

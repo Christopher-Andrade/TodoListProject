@@ -29,7 +29,6 @@ namespace TodoList.Infrastructure.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connString);
             base.OnConfiguring(optionsBuilder); 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

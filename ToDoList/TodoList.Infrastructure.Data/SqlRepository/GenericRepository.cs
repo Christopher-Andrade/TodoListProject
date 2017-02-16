@@ -6,7 +6,7 @@ using TodoList.Domain.Interfaces;
 
 namespace TodoList.Infrastructure.Data.SqlRepository
 {
-    public abstract class GenericRepository<C, T> : 
+    public  class GenericRepository<C, T> : 
         IGenericRepository<T> where T :
         class where C : Microsoft.EntityFrameworkCore.DbContext, new()
     {

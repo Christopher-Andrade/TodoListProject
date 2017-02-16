@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using TodoList.Services.Interfaces;
 using ToDoList.Web.Models.EventModels;
 
-namespace ToDoList.Controllers
+namespace ToDoList.Web.Controllers
 {
     public class EventController : Controller
     {
@@ -29,9 +26,18 @@ namespace ToDoList.Controllers
         [HttpPost]
         public IActionResult Search(SearchModel search)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            var results = _eventService.GetEventsByLocale(search.ProvinceId ?? 0, search.CityId ?? 0);
-            return new JsonResult(results);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var results = _eventService.GetEventsByLocale(search.ProvinceId ?? 0, search.CityId ?? 0);
+                return new JsonResult(results);
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+     
         }
     }
 }
