@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TodoList.Domain.Entities;
 using TodoList.Domain.Entities.Comment;
 
-namespace TodoList.Infrastructure.Data
+namespace TodoList.Infrastructure.Data.Context
 {
     public class EventContext : DbContext
     {
-      
+       private readonly string connString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-ToDoList-10a4ccee-7ca1-45ad-ac30-34e4f7261c7b;Trusted_Connection=True;MultipleActiveResultSets=true";
 
 
         public EventContext()
@@ -32,10 +29,12 @@ namespace TodoList.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer(connString);
             base.OnConfiguring(optionsBuilder); 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             base.OnModelCreating(modelBuilder); 
         }
     }

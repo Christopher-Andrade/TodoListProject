@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TodoList.Domain.Entities.Comment
 {
-    public abstract class Comment
+    public class Comment
     {
+        [Key]
         public int Id { get; set; }
 
         public string Title { get; set; }
