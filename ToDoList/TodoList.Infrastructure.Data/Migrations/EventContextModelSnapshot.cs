@@ -7,7 +7,7 @@ using TodoList.Infrastructure.Data.Context;
 
 namespace TodoList.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(EventContext))]
+    [DbContext(typeof(ProjectContext))]
     partial class EventContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

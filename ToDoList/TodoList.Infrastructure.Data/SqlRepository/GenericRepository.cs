@@ -1,49 +1,54 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using TodoList.Domain.Interfaces;
+using TodoList.Infrastructure.Data.Context;
 
 namespace TodoList.Infrastructure.Data.SqlRepository
 {
-    public  class GenericRepository<C, T> : 
+    public class GenericRepository<T> :
         IGenericRepository<T> where T :
-        class where C : Microsoft.EntityFrameworkCore.DbContext, new()
+        class  
     {
-        private C _entities = new C();
+        private readonly ProjectContext _context;
 
-        public C Context
+        public GenericRepository(ProjectContext cc)
         {
-            get { return _entities; }
-            set { _entities = value; }
+            _context = cc;
         }
 
 
         public IQueryable<T> GetAll()
         {
-            var z = _entities.Set<T>();
-            return z;
+            return _context.Set<T>();
+            
         }
 
         public void Add(T entity)
         {
-            _entities.Add(entity);
+            _context.Add(entity);
         }
 
         public void AddRange(IEnumerable<T> entity)
         {
-            _entities.AddRange(entity);
+            _context.AddRange(entity);
         }
 
         public IQueryable<T> GetByPredicate(Expression<Func<T, bool>> predicate)
         {
-            var res = _entities.Set<T>().Where(predicate);
+            var res = _context.Set<T>().Where(predicate);
             return res;
         }
 
         public void Delete(T entity)
         {
-            _entities.Remove(entity);
+            _context.Remove(entity);
         }
     }
 }
+
+
+

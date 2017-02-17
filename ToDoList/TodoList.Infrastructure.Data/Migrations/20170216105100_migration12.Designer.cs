@@ -7,7 +7,7 @@ using TodoList.Infrastructure.Data.Context;
 
 namespace TodoList.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(EventContext))]
+    [DbContext(typeof(ProjectContext))]
     [Migration("20170216105100_migration12")]
     partial class migration12
     {
