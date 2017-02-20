@@ -20,7 +20,7 @@ namespace ToDoList.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return new JsonResult(_eventService.GetAllEvents());
         }
 
         [HttpPost]

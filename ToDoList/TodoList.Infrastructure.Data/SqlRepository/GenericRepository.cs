@@ -41,30 +41,14 @@ namespace TodoList.Infrastructure.Data.SqlRepository
 
         public IQueryable<T> GetByPredicate(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
         {
-            //_context.Events.Include(x => x.City);
-           // _context.Events.Include(x => x.Province);
-            var query = GetAll().Where(predicate);
-           // DbSet<T> query = _context.Set<T>();
-         //   query.Include(IncludesMapping());
-           // query.Where(predicate).Include(IncludesMapping());
+            //var query = GetAll().Where(predicate);
+            var query = _context.Set<T>().Where(predicate);
             return includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-
-          //  return query;
         }
 
         public void Delete(T entity)
         {
             _context.Remove(entity);
-        }
-
-        private string IncludesMapping()
-        {
-            var t = typeof(T);
-            if (t == typeof(Event))
-            {
-                return "City";
-            }
-            return "";
         }
     }
 }

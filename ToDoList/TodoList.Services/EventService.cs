@@ -74,7 +74,7 @@ namespace TodoList.Services
         public IEnumerable<Event> GetEventsByLocale(int provinceId = 0, int cityId = 0)
         {
             if (provinceId == 0 && cityId == 0) return _eventRepo.GetAll().ToList();
-            return _eventRepo.GetByPredicate(GenerateFilterForLocale(provinceId, cityId),  x => x.City).ToList();
+            return _eventRepo.GetByPredicate(GenerateFilterForLocale(provinceId, cityId),  x => x.City, x=> x.Province).ToList();
         }
 
 
