@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TodoList.Domain.Entities
 {
@@ -12,10 +13,12 @@ namespace TodoList.Domain.Entities
 
         public string Description { get; set; }
 
-        public IEnumerable<Comment.Comment> Comments { get; set; }
+        public virtual ICollection<Comment.Comment> Comments { get; set; }
 
-        public City City { get; set; }
 
-        public Province Province { get; set; }
+        public virtual City City { get; set; }
+
+
+        public virtual Province Province { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using TodoList.Domain.Entities;
 using TodoList.Domain.Interfaces;
 using TodoList.Infrastructure.Data.Context;
 
@@ -23,6 +24,7 @@ namespace TodoList.Infrastructure.Data.SqlRepository
 
         public IQueryable<T> GetAll()
         {
+            
             return _context.Set<T>();
             
         }
@@ -37,15 +39,32 @@ namespace TodoList.Infrastructure.Data.SqlRepository
             _context.AddRange(entity);
         }
 
-        public IQueryable<T> GetByPredicate(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> GetByPredicate(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
         {
-            var res = _context.Set<T>().Where(predicate);
-            return res;
+            //_context.Events.Include(x => x.City);
+           // _context.Events.Include(x => x.Province);
+            var query = GetAll().Where(predicate);
+           // DbSet<T> query = _context.Set<T>();
+         //   query.Include(IncludesMapping());
+           // query.Where(predicate).Include(IncludesMapping());
+            return includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
+          //  return query;
         }
 
         public void Delete(T entity)
         {
             _context.Remove(entity);
+        }
+
+        private string IncludesMapping()
+        {
+            var t = typeof(T);
+            if (t == typeof(Event))
+            {
+                return "City";
+            }
+            return "";
         }
     }
 }

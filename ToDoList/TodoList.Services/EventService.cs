@@ -46,13 +46,13 @@ namespace TodoList.Services
     public class EventService : IEventService
     {
         private readonly IGenericRepository<Event> _eventRepo;
-        private readonly ICommentRepo _commentRepo;
+      //  private readonly ICommentRepo _commentRepo;
 
 
-        public EventService(IGenericRepository<Event> eventRepo, ICommentRepo commentRepo)
+        public EventService(IGenericRepository<Event> eventRepo)//, ICommentRepo commentRepo)
         {
             _eventRepo = eventRepo;
-            _commentRepo = commentRepo;
+        //    _commentRepo = commentRepo;
         }
         public IEnumerable<Event> GetAllEvents()
         {
@@ -61,7 +61,8 @@ namespace TodoList.Services
 
         public IEnumerable<Comment> GetCommentsForEvent(int eventId)
         {
-            return _commentRepo.GetCommentsByParentIdentifier(eventId.ToString());
+            return null;
+           // return _commentRepo.GetCommentsByParentIdentifier(eventId.ToString());
         }
 
         public void AddEvent(Event ev)
@@ -73,7 +74,7 @@ namespace TodoList.Services
         public IEnumerable<Event> GetEventsByLocale(int provinceId = 0, int cityId = 0)
         {
             if (provinceId == 0 && cityId == 0) return _eventRepo.GetAll().ToList();
-            return _eventRepo.GetByPredicate(GenerateFilterForLocale(provinceId, cityId)).ToList();
+            return _eventRepo.GetByPredicate(GenerateFilterForLocale(provinceId, cityId),  x => x.City).ToList();
         }
 
 

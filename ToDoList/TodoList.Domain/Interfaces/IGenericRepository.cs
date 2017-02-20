@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace TodoList.Domain.Interfaces
@@ -13,7 +14,8 @@ namespace TodoList.Domain.Interfaces
 
         void AddRange(IEnumerable<T> entity);
 
-        IQueryable<T> GetByPredicate(System.Linq.Expressions.Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetByPredicate(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+
 
         void Delete(T entity);
 

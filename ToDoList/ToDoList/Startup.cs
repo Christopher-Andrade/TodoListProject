@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Http;
 using TodoList.Domain.Entities;
 using TodoList.Domain.Interfaces;
 using TodoList.Infrastructure.Data.Context;
+using TodoList.Infrastructure.Data.Seed;
 using TodoList.Infrastructure.Data.SqlRepository;
 using TodoList.Services;
 using TodoList.Services.Interfaces;
@@ -76,7 +77,7 @@ namespace ToDoList
             services.AddTransient<IRegionService, RegionService>();
             services.AddTransient<IUserService, UserService>();
            // services.AddTransient<IGenericRepository<Event>, GenericRepository<ProjectContext, Event>>();
-            services.AddTransient<ICommentRepo, CommentRepo>();
+       //     services.AddTransient<ICommentRepo, CommentRepo>();
             //   services.
             // services.AddScoped(typeof(IGenericRepository<Event>), typeof(GenericRepository<ProjectContext, Event>));
 
