@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="CommentService.cs" />
     <None Include="RegionService.cs" />
   </ItemGroup>
 

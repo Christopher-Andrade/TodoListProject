@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TodoList.Domain.Entities.Comment
+namespace TodoList.Domain.Entities
 {
     public class Comment
     {
@@ -16,6 +16,19 @@ namespace TodoList.Domain.Entities.Comment
 
         public User User { get; set; }
 
-        public string CommentParentIdentifier { get; set; }
+        public string ParentIdentifier { get; set; }
+
+       public virtual CommentType CommentType { get; set; }
+    }
+
+    public enum CommentType
+    {
+        Unknown = 0,
+
+        Article = 1,
+
+        Event = 2,
+
+        NotSpecified = 3
     }
 }

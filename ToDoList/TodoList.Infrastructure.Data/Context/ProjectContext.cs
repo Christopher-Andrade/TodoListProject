@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TodoList.Domain.Entities;
-using TodoList.Domain.Entities.Comment;
 
 namespace TodoList.Infrastructure.Data.Context
 {

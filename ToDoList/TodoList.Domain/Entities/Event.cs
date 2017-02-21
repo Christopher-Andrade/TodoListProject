@@ -13,7 +13,7 @@ namespace TodoList.Domain.Entities
 
         public string Description { get; set; }
 
-        public virtual ICollection<Comment.Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
 
         public virtual City City { get; set; }
