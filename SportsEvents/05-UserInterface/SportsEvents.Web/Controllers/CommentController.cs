@@ -1,9 +1,7 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SportsEvents.Services.Interfaces;
 using SportsEvents.Web.Models.CommentModels;
-using SportsEvents.Domain;
 
 namespace SportsEvents.Web.Controllers
 {
@@ -25,7 +23,7 @@ namespace SportsEvents.Web.Controllers
         public IActionResult GetCommentsForParent(SearchModel model)
         {
             var comments = _commentService.GetCommentsForParent(model.ParentIdentifier,
-                _mapper.Map<Models.CommentModels.CommentType, SportsEvents.Domain.Entities.CommentType>(
+                _mapper.Map<Web.Models.CommentModels.CommentType, SportsEvents.Domain.Entities.CommentType>(
                     model.CommentType));
             return new JsonResult(comments);
         }

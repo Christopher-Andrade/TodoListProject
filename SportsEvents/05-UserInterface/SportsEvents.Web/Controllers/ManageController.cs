@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using SportsEvents.Models;
-using SportsEvents.Models.ManageViewModels;
-using SportsEvents.Services;
+using SportsEvents.Web.Models;
+using SportsEvents.Web.Models.ManageViewModels;
+using SportsEvents.Web.Services;
 
-namespace SportsEvents.Controllers
+namespace SportsEvents.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller

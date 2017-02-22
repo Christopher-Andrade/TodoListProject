@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SportsEvents.Data;
-using SportsEvents.Models;
 using SportsEvents.Services;
 using React.AspNet;
 using Microsoft.AspNetCore.Http;
@@ -20,10 +15,12 @@ using SportsEvents.Domain.Interfaces;
 using SportsEvents.Infrastructure.Data.Context;
 using SportsEvents.Infrastructure.Data.Seed;
 using SportsEvents.Infrastructure.Data.SqlRepository;
-using SportsEvents.Services;
 using SportsEvents.Services.Interfaces;
+using SportsEvents.Web.Data;
+using SportsEvents.Web.Models;
+using SportsEvents.Web.Services;
 
-namespace SportsEvents
+namespace SportsEvents.Web
 {
     public class Startup
     {

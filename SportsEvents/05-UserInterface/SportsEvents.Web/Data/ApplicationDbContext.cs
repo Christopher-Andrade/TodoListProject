@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SportsEvents.Models;
+using SportsEvents.Web.Models;
 
-namespace SportsEvents.Data
+namespace SportsEvents.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

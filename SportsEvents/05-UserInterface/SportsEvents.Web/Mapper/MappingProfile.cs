@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 
 namespace SportsEvents.Web.Mapper
 {
@@ -12,7 +7,7 @@ namespace SportsEvents.Web.Mapper
         public MappingProfile()
         {
             CreateMap<SportsEvents.Domain.Entities.CommentType, SportsEvents.Web.Models.CommentModels.CommentType>();
-            //CreateMap<SportsEvents.Domain.Entities.Comment, Models.CommentModels.SearchModel>();
+            //CreateMap<SportsEvents.Web.Domain.Entities.Comment, Models.CommentModels.SearchModel>();
 
 
         }

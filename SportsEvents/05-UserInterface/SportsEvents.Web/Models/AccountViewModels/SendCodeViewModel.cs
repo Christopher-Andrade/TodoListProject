@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace SportsEvents.Models.AccountViewModels
+namespace SportsEvents.Web.Models.AccountViewModels
 {
     public class SendCodeViewModel
     {

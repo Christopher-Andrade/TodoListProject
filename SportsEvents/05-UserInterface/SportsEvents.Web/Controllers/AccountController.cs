@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -9,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using SportsEvents.Models;
-using SportsEvents.Models.AccountViewModels;
-using SportsEvents.Services;
+using SportsEvents.Web.Models;
+using SportsEvents.Web.Models.AccountViewModels;
+using SportsEvents.Web.Services;
 
-namespace SportsEvents.Controllers
+
+namespace SportsEvents.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
