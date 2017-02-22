@@ -23,7 +23,7 @@ namespace TodoList.Services
         }
         public IEnumerable<Event> GetAllEvents()
         {
-            return _eventRepo.GetAll();
+            return _eventRepo.GetAll(x => x.City, x => x.Province);
         }
 
         public void AddEvent(Event ev)

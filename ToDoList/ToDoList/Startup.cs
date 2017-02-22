@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -74,37 +75,18 @@ namespace ToDoList
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<IEventService, EventService>();
+            services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IRegionService, RegionService>();
             services.AddTransient<IUserService, UserService>();
-           // services.AddTransient<IGenericRepository<Event>, GenericRepository<ProjectContext, Event>>();
-       //     services.AddTransient<ICommentRepo, CommentRepo>();
-            //   services.
-            // services.AddScoped(typeof(IGenericRepository<Event>), typeof(GenericRepository<ProjectContext, Event>));
-
-            
-
-            var builder =
-                new DbContextOptionsBuilder().UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-
-
-            var oo =
-                SqlServerDbContextOptionsExtensions.UseSqlServer(builder, Configuration.GetConnectionString("DefaultConnection"));
-
-            // services.AddScoped(typeof(ProjectContext), typeof(new ProjectContext(oo.Options)));
-
-            //  ProjectContext c = new ProjectContext(new SqlServerDbContextOptionsExtensions(){})
-            //  services.AddScoped(typeof(GenericRepository<ProjectContext, Event>), typeof(GenericRepository<ProjectContext, Event>));
-            // services.AddScoped(GenericRepository<ProjectContext, Event> => new GenericRepository<ProjectContext;
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 
+            services.AddAutoMapper();
+
             services.AddDbContext<ProjectContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             
-
-            //Repos
-            //services.AddTransient<IEventRepo, EventRepo>();
+            
 
         }
 
@@ -118,7 +100,7 @@ namespace ToDoList
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-
+                
                 // Browser Link is not compatible with Kestrel 1.1.0
                 // For details on enabling Browser Link, see https://go.microsoft.com/fwlink/?linkid=840936
                 // app.UseBrowserLink();
@@ -127,7 +109,6 @@ namespace ToDoList
                 {
                     serviceScope.ServiceProvider.GetService<ProjectContext>().Database.Migrate();
                     serviceScope.ServiceProvider.GetService<ProjectContext>().EnsureSeedData();
-
                 }
             }
             else

@@ -8,7 +8,7 @@ namespace TodoList.Domain.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes);
 
        void Add(T entity);
 

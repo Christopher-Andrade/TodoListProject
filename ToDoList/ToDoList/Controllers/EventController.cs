@@ -24,7 +24,7 @@ namespace ToDoList.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(SearchModel search)
+        public IActionResult GetEventsByCityAndProvince(SearchModel search)
         {
             try
             {

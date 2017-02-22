@@ -10,7 +10,7 @@ namespace TodoList.Infrastructure.Data.Context
     {
         //private readonly string connString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-ToDoList-10a4ccee-7ca1-45ad-ac30-34e4f7261c7b;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        private ProjectContext()
+        public ProjectContext()
         {
 
         }
@@ -31,6 +31,7 @@ namespace TodoList.Infrastructure.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+          //  optionsBuilder.UseSqlServer(connString);
             base.OnConfiguring(optionsBuilder);
         }
 

@@ -22,11 +22,12 @@ namespace TodoList.Infrastructure.Data.SqlRepository
         }
 
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes)
         {
-            
-            return _context.Set<T>();
-            
+
+            var query = _context.Set<T>().Where(x=>true);
+            return includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
         }
 
         public void Add(T entity)
