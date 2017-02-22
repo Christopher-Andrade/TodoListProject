@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="CommentService.cs" />
+    <None Include="RegionService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01-Domain\SportsEvents.Domain\SportsEvents.Domain.csproj" />
+    <ProjectReference Include="..\..\02-Service Interfaces\SportsEvents.Services.Interfaces\SportsEvents.Services.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
