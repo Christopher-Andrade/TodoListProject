@@ -66,6 +66,7 @@ namespace SportsEvents.Web
             {
                 options.SslPort = 44370;
                 options.Filters.Add(new Microsoft.AspNetCore.Mvc.RequireHttpsAttribute());
+                
             });
             
             // Add application services.

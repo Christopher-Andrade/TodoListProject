@@ -20,6 +20,12 @@ namespace SportsEvents.Web.Controllers
 
         public IActionResult Index()
         {
+           // ..return new JsonResult(_eventService.GetAllEvents());
+            return View();
+        }
+
+        public IActionResult GetAll()
+        {
             return new JsonResult(_eventService.GetAllEvents());
         }
 
