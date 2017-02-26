@@ -6,31 +6,87 @@
 //    return value;
 //};
 
+class CityDropDown extends React.Component {
+    render() {
+        return (
+            <div className="dropdown">
+                <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cities
+                    <span className="caret"></span></button>
+                <ul className="dropdown-menu">
+
+                    {
+                        this.props.cities.map(function (city) {
+                            return <li><a href="#">{city.name}</a></li>
+                        })
+                    }
+                  
+                </ul>
+
+
+            </div>
+        );
+
+    }
+}
+
+class ProvinceDropdown extends React.Component {
+    render() {
+        return (
+            <div className="dropdown">
+                <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cities
+                    <span className="caret"></span></button>
+                <ul className="dropdown-menu">
+
+                    {
+                        this.props.provinces.map(function (province) {
+                            return <li><a href="#">{province.name}</a></li>
+                        })
+                    }
+
+                </ul>
+
+
+            </div>
+        );
+}
+
 class EventSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: []
+            events: [],
+            cities: [],
+            provinces:[]
         };
     }
 
 
     componentDidMount() {
         var self = this;
-        ////Get event list
+        //Get event list
         $.getJSON("https://localhost:44370/Event/GetAll")
-            .done(function (response) {
-               // console.log(response);
-              //  JSON.stringify(response[0]);
+            .done(function(response) {
                 self.setState({ events: response });
-              //  console.log(JSON.stringify(this.state));
             })
             .fail(function() {
                 console.log("error");
+            });
+
+        $.getJSON("https://localhost:44370/Region/GetAllCities")
+            .done(function (response) {
+                self.setState({ cities: response });
             })
-            //.always(function() {
-            //    console.log("complete");
-            //});
+            .fail(function () {
+                console.log("error");
+            });
+
+        $.getJSON("https://localhost:44370/Region/GetAllProvinces")
+            .done(function (response) {
+                self.setState({ provinces: response });
+            })
+            .fail(function () {
+                console.log("error");
+            });
     }
 
     componentWillUnmount() {
@@ -49,17 +105,17 @@ class EventSelector extends React.Component {
                 </h4>
                 <div className="form-group">
                     <label>Province:</label>
-                //Ddl
+                    <ProvinceDropDown provinces={this.state.provinces} />
                 </div>
 
                 <div className="form-group">
                     <label>City:</label>
-                //Ddl
+                <CityDropDown cities={this.state.cities}/>
                 </div>
                 <button type="submit" className="btn btn-default">Search</button>
                    <EventListing events={this.state.events}/>
             </div>
-            //</form>
+            
         );
     }
 }
@@ -71,25 +127,29 @@ class EventListing extends React.Component {
             <div className="eventList">
                 <h5>Events:</h5>
 
-                //{JSON.stringify(events).forEach((event) => {
-                //    console.log(event);
-                //});
+                {
+                    this.props.events.map(function(event) {
+                        return <EventItem event={event}/>
+                    })
+                }
                     </div>
         );
     }
 }
+
+
+
+
+
+
 
 class EventItem extends React.Component {
     render() {
         var event = this.props.event;
         return (
             <div className="eventItem">
-                <ul>
-                    <li>{event.name}</li>
-                    <li>{event.description}</li>
-                  
-                </ul>
-
+                    {event.name}
+                    {event.description}
             </div>
         );
     }
