@@ -1,53 +1,35 @@
-﻿//function fetchEvents() {
-//    var value = $.ajax({
-//        url: 'https://localhost:44370/Event/GetAll',
-//        async: false
-//    }).responseText;
-//    return value;
-//};
-
-class CityDropDown extends React.Component {
+﻿class CityDropDown extends React.Component {
     render() {
         return (
-            <div className="dropdown">
-                <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cities
-                    <span className="caret"></span></button>
-                <ul className="dropdown-menu">
-
+            <div className="form-group input-sm">
+                <label htmlFor="sel1" className="input-sm" >Select City</label>
+                <select className="form-control input-sm" id="sel1">
                     {
                         this.props.cities.map(function (city) {
-                            return <li><a href="#">{city.name}</a></li>
+                            return <option key={city.id}>{city.name}</option>;
                         })
                     }
-                  
-                </ul>
-
-
+                    </select>
             </div>
         );
-
     }
 }
 
 class ProvinceDropdown extends React.Component {
     render() {
         return (
-            <div className="dropdown">
-                <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cities
-                    <span className="caret"></span></button>
-                <ul className="dropdown-menu">
-
+            <div className="form-group input-sm">
+                <label htmlFor="sel2" className="input-sm">Select Province</label>
+                <select className="form-control input-sm" id="sel2">
                     {
-                        this.props.provinces.map(function (province) {
-                            return <li><a href="#">{province.name}</a></li>
+                        this.props.provinces.map(function(province) {
+                            return <option key={province.Id}>{province.name}</option>;
                         })
                     }
-
-                </ul>
-
-
+                </select>
             </div>
         );
+    }
 }
 
 class EventSelector extends React.Component {
@@ -56,7 +38,7 @@ class EventSelector extends React.Component {
         this.state = {
             events: [],
             cities: [],
-            provinces:[]
+            provinces: []
         };
     }
 
@@ -73,18 +55,18 @@ class EventSelector extends React.Component {
             });
 
         $.getJSON("https://localhost:44370/Region/GetAllCities")
-            .done(function (response) {
+            .done(function(response) {
                 self.setState({ cities: response });
             })
-            .fail(function () {
+            .fail(function() {
                 console.log("error");
             });
 
         $.getJSON("https://localhost:44370/Region/GetAllProvinces")
-            .done(function (response) {
+            .done(function(response) {
                 self.setState({ provinces: response });
             })
-            .fail(function () {
+            .fail(function() {
                 console.log("error");
             });
     }
@@ -95,61 +77,54 @@ class EventSelector extends React.Component {
 
     render() {
         return (
-            //<form method="post" action="Event/Search">
-         
-            <div className="eventList">
-                <h4>
-                    <p className="text-center">
-                        Filter events by location
-                    </p>
-                </h4>
-                <div className="form-group">
-                    <label>Province:</label>
-                    <ProvinceDropDown provinces={this.state.provinces} />
+            <div className="panel panel-default">
+                <div className="panel-heading">Filter events by location</div>
+                <div className="panel-body">
+                    <div className="form-inline" role="form">
+                        <ProvinceDropdown provinces={this.state.provinces}/>
+                        <CityDropDown cities={this.state.cities}/>
+                        <button type="submit" className="btn btn-default btn-xs">Search</button>
+                    </div>
                 </div>
 
-                <div className="form-group">
-                    <label>City:</label>
-                <CityDropDown cities={this.state.cities}/>
+                <label>Event Listing</label>
+                <div className="panel-body">
+                    <EventListing events={this.state.events}/>
                 </div>
-                <button type="submit" className="btn btn-default">Search</button>
-                   <EventListing events={this.state.events}/>
             </div>
-            
         );
     }
 }
+
 
 class EventListing extends React.Component {
     render() {
         var events = this.props.events;
         return (
             <div className="eventList">
-                <h5>Events:</h5>
-
                 {
                     this.props.events.map(function(event) {
-                        return <EventItem event={event}/>
+                        return <EventItem key={event.Id} event={event}/>;
                     })
                 }
-                    </div>
+            </div>
         );
     }
 }
-
-
-
-
-
 
 
 class EventItem extends React.Component {
     render() {
         var event = this.props.event;
         return (
-            <div className="eventItem">
-                    {event.name}
-                    {event.description}
+            <div className="media">
+                <div className="media-left">
+                    <img src="/images/dot-blue.png" className="media-object" style={{ width: "50px" }} />
+                </div>
+                <div className="media-body" key={event.Id}>
+                    <h4 className="media-heading"> {event.name}</h4>
+                    <p> {event.description}</p>
+                </div>
             </div>
         );
     }
