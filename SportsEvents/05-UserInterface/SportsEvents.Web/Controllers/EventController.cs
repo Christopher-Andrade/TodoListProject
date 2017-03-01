@@ -29,7 +29,7 @@ namespace SportsEvents.Web.Controllers
             return new JsonResult(_eventService.GetAllEvents());
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetEventsByCityAndProvince(SearchModel search)
         {
             try

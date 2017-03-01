@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SportsEvents.Services.Interfaces;
+using SportsEvents.Web.Models.RegionModels;
 
 namespace SportsEvents.Web.Controllers
 {
@@ -29,6 +30,12 @@ namespace SportsEvents.Web.Controllers
         {
             return new JsonResult(_regionService.GetAllCities());
 
+        }
+
+        [HttpGet]
+        public IActionResult GetCitiesByProvince(int provinceId)
+        {
+            return new JsonResult(_regionService.GetCitiesByProvince(provinceId));
         }
 
     }

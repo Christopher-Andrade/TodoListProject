@@ -122,6 +122,38 @@ namespace SportsEvents.Infrastructure.Data.Seed
                         }
                     };
 
+                    city = context.Cities.Single(x => x.Name == "Clifton");
+                    prov = context.Provinces.Single(x => x.Name == "Western Cape");
+                    context.Attach(city);
+                    context.Attach(prov);
+
+                    events.Add(
+                        new Event()
+                        {
+                            City = city,
+                            Name = "Kasper de Vries Live!",
+                            Description = "Kaspers 20 year comeback show",
+                            Province = prov,
+                            Id = 2
+                        }
+                    );
+
+                    city = context.Cities.Single(x => x.Name == "Vaal City");
+                    prov = context.Provinces.Single(x => x.Name == "Freestate");
+                    context.Attach(city);
+                    context.Attach(prov);
+
+                    events.Add(
+                       new Event()
+                       {
+                           City = city,
+                            Description = "Part of the Bruce Springsteen world tour, feauturing the one and only",
+                            Name = "Bruce Springsteen",
+                            Province = prov,
+                            Id = 3
+                        }
+                   );
+
                     context.AddRange(events);
                     context.SaveChanges();
                     context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Events] OFF");

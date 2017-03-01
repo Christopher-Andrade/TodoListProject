@@ -45,8 +45,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\RegionModels\" />
     <Folder Include="Views\Event\" />
-    <Folder Include="Views\NewFolder\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\01-Domain\SportsEvents.Domain\SportsEvents.Domain.csproj" />

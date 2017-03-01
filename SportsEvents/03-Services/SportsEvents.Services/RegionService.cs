@@ -31,9 +31,16 @@ namespace SportsEvents.Services
 
         public IEnumerable<City> GetCitiesByProvince(int provinceId)
         {
-            var res = _provinceRepo.GetByPredicate(x => x.Id == provinceId, y => y.Cities);
-            var c = (from City cities in res.Select(x => x.Cities) select cities).AsQueryable();
-            return c;
+            if (provinceId < 1) return null;
+            var province = _provinceRepo.GetByPredicate(x => x.Id == provinceId, y => y.Cities).ToList();
+
+            var cities = (from p in province
+                       select p
+                into c
+                from city in c.Cities
+                select city).ToList();
+
+            return cities;
         }
     }
 }
