@@ -3,7 +3,7 @@
         super(props);
     }
     render() {
-        console.log("called");
+        //console.log("CityDropDown render called");
         return (
             <div className="form-group">
                 <label htmlFor="sel1" className="input-sm" >Select City</label>
@@ -20,44 +20,52 @@
     }
 }
 
-//GetCitiesByProvince
-
 class ProvinceDropdown extends React.Component {
     constructor(props) {
         super(props);
-       // this.ProvinceDropdown = this.ProvinceDropdown.bind(this);
+        this.notifyCitiesParentProp = this.notifyCitiesParentProp.bind(this);
     }
-    change(event) {
 
-       
+    notifyCitiesParentProp(event) {
+       // console.log('handler called');
+        this.props.handler(event);
+    } 
 
+    clearCities() {
+        
+    }
+
+    changeSelectedProvince(event) {
         var self = this;
-        this.setState({ selectedProvince: event.target.value });
-       // console.log("state updated");
-        //console.log(event.target.value);
-        this.props.handler("test");
+        //this.setState({ selectedProvince: event.target.value });
         var provId = event.target.value;
+        if (provId === "0") {
+            self.clearCities();
+            return;
+        };
+            
         $.getJSON("https://localhost:44370/Region/GetCitiesByProvince?provinceId=" + provId)
             .done(function (response) {
-               // self.setState({ cities: response });
-                this.props.handler(response);
+                self.notifyCitiesParentProp(response);
             })
             .fail(function () {
                 console.log("error");
             });
-        console.log(JSON.stringify(this.state));
+       // console.log(JSON.stringify(this.state));
     }
+
+
 
     render() {
         return (
             <div className="form-group">
                 <label htmlFor="sel2" className="input-sm">Select Province</label>
                 
-                <select className="form-control input-sm" id="sel2" onChange={this.change.bind(this)}>
+                <select className="form-control input-sm" id="sel2" onChange={this.changeSelectedProvince.bind(this)}>
                     <option key="0" value="0">All</option>
                     {
                         this.props.provinces.map(function(province) {
-                            return <option key={province.Id} value={province.id} >{province.name}</option>;
+                            return <option key={province.id} value={province.id} >{province.name}</option>;
                         })
                     }
                 </select>
@@ -79,8 +87,8 @@ class EventSelector extends React.Component {
     }
 
     handleProvinceSelect(e) {
-        console.log("called2");
-
+       // console.log("handleProvinceSelect called");
+       // console.log(JSON.stringify(e));
         this.setState({ cities: e });
     }
 
@@ -152,7 +160,8 @@ class EventListing extends React.Component {
             <div className="eventList">
                 {
                     this.props.events.map(function(event) {
-                        return <EventItem key={event.Id} event={event}/>;
+                        return <EventItem event={event} key={event.id}/>;
+                       
                     })
                 }
             </div>
@@ -165,13 +174,13 @@ class EventItem extends React.Component {
     render() {
         var event = this.props.event;
         return (
-            <div className="media">
+            <div className="media" >
                 <div className="media-left">
                     <span className="glyphicon glyphicon-hand-right"></span>
                 </div>
-                <div className="media-body" key={event.Id}>
-                    <h4 className="media-heading"> {event.name}</h4>
-                    <p> {event.description}</p>
+                <div className="media-body">
+                    <h4 className="media-heading" > {event.name}</h4>
+                    <p > {event.description}</p>
                 </div>
             </div>
         );
